@@ -2,6 +2,6 @@ package ie.gmi.sw.ai;
 
 public interface Parser {
 
-	public void parse();
+	public void parse(String fileName);
 	
 }

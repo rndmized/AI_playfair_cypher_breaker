@@ -21,6 +21,21 @@ public class PlayFairKey extends Key {
 		this.key = key;
 	}
 	
+	public void setKey(char[][] key) {
+		
+		StringBuilder stringBuilder = new StringBuilder();
+        
+		for (int i = 0; i < 5; i++) {
+        	for (int j = 0; j < 5; j++) {
+        		stringBuilder.append(key[i][j]);
+			}
+		}
+
+		this.key = stringBuilder.toString();
+		
+	}	
+	
+	
 	public char[][] toMatrix(){
 		
 		char[][] charArray = new char[5][5];
