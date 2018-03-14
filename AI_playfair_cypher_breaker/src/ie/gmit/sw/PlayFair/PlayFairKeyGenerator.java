@@ -13,29 +13,9 @@ import java.util.concurrent.ThreadLocalRandom;
 public class PlayFairKeyGenerator {
 	
 	private static final String alphabet = "abcdefghiklmnopqrstuvwxyz";
-	private PlayFairKey key;
-	
-	public PlayFairKeyGenerator() {
-		this.key = new PlayFairKey(alphabet);
-	}
-	
-	public PlayFairKeyGenerator(String key) {
-		this.key.setKey(this.generateKey(key + alphabet).getKey());
-	}
-	
-//	public String generateKey(String key){
-//		StringBuilder stringBuilder = new StringBuilder();
-//        char [] keyArr = (key + alphabet).toCharArray();
-//        Set
-//        for (int i = 0; i < 25; i++) {
-//        	stringBuilder.append(keyArr[i]);	
-//		}
-//       this.key.setKey(stringBuilder.toString());
-//       return stringBuilder.toString();
-//	}
-
 
     public PlayFairKey generateKey(String key){
+    	
 		StringBuilder stringBuilder = new StringBuilder();
         Set<Character> set = new LinkedHashSet<Character>();
         key += alphabet;
@@ -47,8 +27,9 @@ public class PlayFairKeyGenerator {
         for (Object chr : set) {
             stringBuilder.append(chr);
        }
-       this.key.setKey(stringBuilder.toString());
-       return this.key;
+        PlayFairKey pfKey = new PlayFairKey();
+        pfKey.setKey(stringBuilder.toString());
+       return pfKey;
 	}
 	
 	public PlayFairKey generateRandomKey(){
@@ -57,8 +38,9 @@ public class PlayFairKeyGenerator {
         for (Object chr : keyArr) {
             stringBuilder.append(chr);
        }
-        this.key.setKey(stringBuilder.toString());
-       return this.key;
+        PlayFairKey pfKey = new PlayFairKey();
+        pfKey.setKey(stringBuilder.toString());
+       return pfKey;
 	}
 	
 	private char[] shuffle(char[] key) {
@@ -75,10 +57,5 @@ public class PlayFairKeyGenerator {
 		return key;
 	}
 	
-	public void displayMatrix(){
-		this.key.displayMatrix();
-	}
-	
-
 
 }

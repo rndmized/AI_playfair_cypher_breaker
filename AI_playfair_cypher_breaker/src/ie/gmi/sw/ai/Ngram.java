@@ -12,6 +12,7 @@ import java.util.Map;
 public class Ngram implements Parser {
 	
 	private Map<String, Integer> map =  new HashMap<String, Integer>();
+	private long total;
 	
 	public Ngram(String filePath){
 		this.parse(filePath);
@@ -22,11 +23,11 @@ public class Ngram implements Parser {
 		return map;
 	}
 
-	
-	public void setMap(Map<String, Integer> map) {
-		this.map = map;
+
+	public long getTotal() {
+		return total;
 	}
-	
+
 
 	@Override
 	public void parse(String fileName) {
@@ -43,6 +44,7 @@ public class Ngram implements Parser {
 						String[] words = line.split("[\\s@&.,;:?$+-]+");// using regex
 						//Add words up to shingle size to buffer list
 						map.put(words[0].toLowerCase(), Integer.parseInt(words[1]));
+						total += Integer.parseInt(words[1]);
 						}
 					
 				} catch (NumberFormatException | IOException e) {

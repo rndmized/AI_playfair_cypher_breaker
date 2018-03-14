@@ -26,11 +26,11 @@ public class Hobbit {
 	}
 	
 	public String getCodedText() {
-		return codedText;
+		return codedText.substring(0,400).toLowerCase();
 	}
 	
 	public String getKey() {
-		return key;
+		return key.toLowerCase();
 	}
 	
 
