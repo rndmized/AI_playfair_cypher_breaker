@@ -3,13 +3,13 @@ package ie.gmi.sw.ai;
 import java.util.Map;
 import java.util.Random;
 
+import ie.gmit.sw.PlayFair.Key;
 import ie.gmit.sw.PlayFair.PlayFairCipher;
 import ie.gmit.sw.PlayFair.PlayFairKey;
 import ie.gmit.sw.PlayFair.PlayFairKeyGenerator;
 
 public class SimulatedAnnealing {
 
-	private PlayFairKeyGenerator keyGen;
 	private PlayFairCipher pfc;
 	private Ngram ngram;
 	private Hobbit hobbit = new Hobbit();
@@ -23,21 +23,18 @@ public class SimulatedAnnealing {
 
 	public void init() {
 
-		keyGen = new PlayFairKeyGenerator();
 		ngram = new Ngram("../4grams.txt");
 		pfc = new PlayFairCipher();
 		map = ngram.getMap();
 	}
 
-	public void run() {
+	public void breakPlayFairEncryption() {
 
-		PlayFairKey parent = keyGen.generateRandomKey();
-		PlayFairKey backup = keyGen.generateKey(parent.getKey());
+		Key parent = PlayFairKeyGenerator.generateRandomKey();;
 		double maxScore = logProbability(parent);
-		int counter = 0;
-		for (int temp = 10; temp > 0; temp--) {
+		for (int temp = 10; temp >= 0; temp--) {
 			for (int transitions = 50000; transitions > 0; transitions--) {
-				PlayFairKey child = shuffleKey(parent);
+				Key child = shuffleKey(parent);
 				double score = logProbability(child);
 				double delta = score - maxScore;
 				if (delta > 0) {
@@ -48,26 +45,22 @@ public class SimulatedAnnealing {
 					if (temp > 0) {
 						double prob = Math.pow(Math.E, delta / temp);
 						if (prob > 0.5) {
-							counter++;
 							maxScore = score;
 							parent.setKey(child.getKey());
 						}
 
 					}
 				}
-
 			}
+			System.out.println("Temperature: " + temp);
+			System.out.println("Highest score in this iteration: " + maxScore);
+			System.out.println("Best candidate Key in this iteration: " + parent.getKey());
 		}
 
-		System.out.println("Starting Point");
-		backup.displayMatrix();
-		System.out.println("Final");
-		parent.displayMatrix();
-		System.out.println(pfc.decrypt(hobbit.getCodedText(), parent));
-		System.out.println("Randomness: " + counter);
+		System.out.println("Sample text:" + pfc.decrypt(hobbit.getCodedText(), parent));
 	}
 
-	public double logProbability(PlayFairKey key) {
+	public double logProbability(Key key) {
 
 		char[] text = pfc.decrypt(hobbit.getCodedText(), key).toCharArray();
 		double score = 0.0;
@@ -80,7 +73,7 @@ public class SimulatedAnnealing {
 		return score;
 	}
 
-	public PlayFairKey shuffleKey(PlayFairKey parent) {
+	public PlayFairKey shuffleKey(Key parent) {
 
 		PlayFairKey key = new PlayFairKey(parent.getKey());
 		int rnd = (int) (Math.random() * 100);

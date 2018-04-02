@@ -1,38 +1,14 @@
 package ie.gmit.sw.PlayFair;
 
-public class PlayFairCipher {
+public class PlayFairCipher implements Cipher {
 
-	private PlayFairKey key;
-	private int length = 0;
 
 	public PlayFairCipher() {
 	}
 
 
-	public String decrypt(String text, PlayFairKey key) {
-		this.key = key;
-		String decodedText = this.decrypt(text.toLowerCase(), key.getKey());
-		if (decodedText.endsWith("x"))
-			decodedText = decodedText.substring(0, decodedText.length() - 1);
-		return decodedText;
-	}
 	
-	
-	public String[] divideToPairs(String message) {
-
-        String pairs[] = new String[message.length() / 2];
-        int j = 0;
-
-        for (int i = 0; i < message.length(); i = i + 2) {
-            pairs[j] = message.substring(i, i + 2);
-            j++;
-        }
-
-        return pairs;
-    }
-
-
-	private String decrypt(String encryptedText, String matrix) {
+	private String playFairDecryption(String encryptedText, String matrix) {
 
 		StringBuilder ciphertex = new StringBuilder();
 		
@@ -67,5 +43,28 @@ public class PlayFairCipher {
 
 		return ciphertex.toString();
 	}
+
+
+	/***
+	 * 
+	 */
+	@Override
+	public String encrypt(String text, Key key) {
+		/*
+		 * Encryption has not been implemented since it is not required for this project.
+		 * Added for design and future implementation.
+		 * 
+		 * */
+		return null;
+	}
+
+
+	@Override
+	public String decrypt(String text, Key key) {
+		
+		return this.playFairDecryption(text, key.getKey());
+	}
+
+
 
 }

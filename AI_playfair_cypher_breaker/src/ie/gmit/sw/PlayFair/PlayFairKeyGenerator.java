@@ -8,19 +8,19 @@ import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 
-// ref: https://gist.github.com/emara-geek/473702df72163773d8393d93428c4b6b
-
 public class PlayFairKeyGenerator {
 	
-	private static final String alphabet = "abcdefghiklmnopqrstuvwxyz";
+	private static final String alphabet = "abcdefghiklmnopqrstuvwxyz".toUpperCase();
+	
 
-    public PlayFairKey generateKey(String key){
+    public static PlayFairKey generateKey(String key){
     	
 		StringBuilder stringBuilder = new StringBuilder();
         Set<Character> set = new LinkedHashSet<Character>();
         key += alphabet;
         //Eliminate duplicate letters
-        for (char chr : key.toLowerCase().toCharArray()) {
+        //Change j for i
+        for (char chr : key.toUpperCase().toCharArray()) {
         	if (chr == 'j') chr = 'i';
             set.add(chr);
         }
@@ -32,9 +32,9 @@ public class PlayFairKeyGenerator {
        return pfKey;
 	}
 	
-	public PlayFairKey generateRandomKey(){
+	public static PlayFairKey generateRandomKey(){
 		StringBuilder stringBuilder = new StringBuilder();
-        char [] keyArr = this.shuffle(alphabet.toCharArray());
+        char [] keyArr = shuffle(alphabet.toCharArray());
         for (Object chr : keyArr) {
             stringBuilder.append(chr);
        }
@@ -43,7 +43,7 @@ public class PlayFairKeyGenerator {
        return pfKey;
 	}
 	
-	private char[] shuffle(char[] key) {
+	private static char[] shuffle(char[] key) {
 		int index;
 		Random random = ThreadLocalRandom.current();
 		for (int i = key.length - 1; i > 0; i--) {

@@ -43,7 +43,7 @@ public class Ngram implements Parser {
 						// Split it eliminating symbols and spaces 
 						String[] words = line.split("[\\s@&.,;:?$+-]+");// using regex
 						//Add words up to shingle size to buffer list
-						map.put(words[0].toLowerCase(), Integer.parseInt(words[1]));
+						map.put(words[0], Integer.parseInt(words[1]));
 						total += Integer.parseInt(words[1]);
 						}
 					
