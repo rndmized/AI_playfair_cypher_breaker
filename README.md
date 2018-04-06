@@ -64,12 +64,17 @@ One side effect of multiplying probabilities with very small floating point valu
 
 ## Installation & Running the code
 
-The code can be run by compiling the code in the src folder, then running the following command in the console.
+The code can be run by compiling the code in the src folder into a jar file with  the following command in the console.
+
+```
+$: jar –cf playfair.jar ie/gmit/sw/ai/*.class
+```
+
+When the jar file is created, it can be run by using the following command:
 
 ```
 $: java –cp ./playfair.jar ie.gmit.sw.ai.CipherBreaker
 ```
-
 
 ## Authors
 

@@ -34,7 +34,7 @@ public class CipherBreaker {
 		System.out.println("Enter file path (default: TheHobbit-Cypher(clean).txt):");
 		String s = in.nextLine();
 		if (s.length() == 0) {
-			hobbit.parse("../TheHobbit-Cypher(clean).txt");
+			hobbit.parse("./TheHobbit-Cypher(clean).txt");
 		} else {
 			hobbit.parse(s);
 		}
@@ -42,7 +42,7 @@ public class CipherBreaker {
 		System.out.println("Enter ngram file path (default: 4grams.txt):");
 		s = in.nextLine();
 		if (s.length() == 0) {
-			ngram.parse("../4grams.txt");
+			ngram.parse("./4grams.txt");
 		} else {
 			ngram.parse(s);
 		}
