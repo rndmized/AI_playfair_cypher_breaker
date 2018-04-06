@@ -7,6 +7,7 @@ import java.io.PrintWriter;
  * FileWriter outputs a string into a text file.
  * 
  * @author RnDMizeD
+ * @version 1.01
  *
  */
 public class FileWriter {
@@ -16,8 +17,8 @@ public class FileWriter {
 	 * 
 	 * @param text The string to print into the file.
 	 */
-public void writeFile(String text) {
-	try (PrintWriter out = new PrintWriter("output.txt")) {
+public void writeFile(String text, String fileName) {
+	try (PrintWriter out = new PrintWriter(fileName + ".txt")) {
 	    out.println(text);
 	} catch (FileNotFoundException e) {
 		e.printStackTrace();

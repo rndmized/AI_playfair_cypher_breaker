@@ -54,8 +54,11 @@ public class CipherBreaker {
 		SimulatedAnnealing sa = new SimulatedAnnealing(pfc, ngram);
 		Key key = sa.breakPlayFairEncryption(hobbit.getTextSample(), PlayFairKeyBuilder.generateRandomKey());
 		// Decrypt file
+		
+		System.out.println("Please enter name for the output file:");
+		s = in.nextLine();
 		System.out.println("Writing Output to file.");
-		new FileWriter().writeFile(pfc.decrypt(hobbit.getText(), key));
+		new FileWriter().writeFile(pfc.decrypt(hobbit.getText(), key),s);
 		System.out.println("Done!");
 
 	}
