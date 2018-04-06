@@ -16,6 +16,7 @@ public class FileWriter {
 	 * Write string into a text file called output.txt
 	 * 
 	 * @param text The string to print into the file.
+	 * @param fileName The name of the output file.
 	 */
 public void writeFile(String text, String fileName) {
 	try (PrintWriter out = new PrintWriter(fileName + ".txt")) {
