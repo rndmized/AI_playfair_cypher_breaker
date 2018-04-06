@@ -1,41 +1,36 @@
-package ie.gmi.sw.ai;
+package ie.gmit.sw.ai;
 
 import java.util.Map;
 import java.util.Random;
 
-import ie.gmit.sw.PlayFair.Key;
-import ie.gmit.sw.PlayFair.PlayFairCipher;
-import ie.gmit.sw.PlayFair.PlayFairKey;
-import ie.gmit.sw.PlayFair.PlayFairKeyGenerator;
 
 public class SimulatedAnnealing {
 
 	private PlayFairCipher pfc;
-	private Ngram ngram;
-	private Hobbit hobbit = new Hobbit();
+	private NgramParser ngram;
 	private Map<String, Integer> map;
 
-	public SimulatedAnnealing() {
+	public SimulatedAnnealing(PlayFairCipher pfc,  NgramParser ngram) {
 
+		this.pfc = pfc;
+		this.ngram = ngram;
 		this.init();
 
 	}
+	
 
 	public void init() {
 
-		ngram = new Ngram("../4grams.txt");
-		pfc = new PlayFairCipher();
 		map = ngram.getMap();
 	}
 
-	public void breakPlayFairEncryption() {
-
-		Key parent = PlayFairKeyGenerator.generateRandomKey();;
-		double maxScore = logProbability(parent);
+	public Key breakPlayFairEncryption(String text, Key parent) {
+		System.out.println("Started Simmulated Annealing to break PlayFair Cipher.");
+		double maxScore = logProbability(text, parent);
 		for (int temp = 10; temp >= 0; temp--) {
 			for (int transitions = 50000; transitions > 0; transitions--) {
 				Key child = shuffleKey(parent);
-				double score = logProbability(child);
+				double score = logProbability(text, child);
 				double delta = score - maxScore;
 				if (delta > 0) {
 					maxScore = score;
@@ -57,12 +52,12 @@ public class SimulatedAnnealing {
 			System.out.println("Best candidate Key in this iteration: " + parent.getKey());
 		}
 
-		System.out.println("Sample text:" + pfc.decrypt(hobbit.getCodedText(), parent));
+		return parent;
 	}
 
-	public double logProbability(Key key) {
+	public double logProbability(String encryptedText, Key key) {
 
-		char[] text = pfc.decrypt(hobbit.getCodedText(), key).toCharArray();
+		char[] text = pfc.decrypt(encryptedText, key).toCharArray();
 		double score = 0.0;
 		for (int i = 0; i < text.length - 3; i++) {
 			String s = "" + text[i] + text[i + 1] + text[i + 2] + text[i + 3];

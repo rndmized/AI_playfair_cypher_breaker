@@ -1,4 +1,4 @@
-package ie.gmit.sw.PlayFair;
+package ie.gmit.sw.ai;
 
 public class PlayFairKey extends Key {
 	

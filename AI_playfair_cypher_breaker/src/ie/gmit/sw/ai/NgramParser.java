@@ -1,4 +1,4 @@
-package ie.gmi.sw.ai;
+package ie.gmit.sw.ai;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -9,12 +9,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Ngram implements Parser {
+public class NgramParser implements Parser {
 	
 	private Map<String, Integer> map =  new HashMap<String, Integer>();
 	private long total;
 	
-	public Ngram(String filePath){
+	public NgramParser(String filePath){
 		this.parse(filePath);
 	}
 	

@@ -1,16 +1,14 @@
-package ie.gmit.sw.PlayFair;
+package ie.gmit.sw.ai;
 
-import java.util.List;
 import java.util.Random;
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 
-public class PlayFairKeyGenerator {
+public class PlayFairKeyBuilder {
 	
-	private static final String alphabet = "abcdefghiklmnopqrstuvwxyz".toUpperCase();
+	private static final String alphabet = "ABCDEFGHIKLMNOPQRSTUVWXYZ";
 	
 
     public static PlayFairKey generateKey(String key){

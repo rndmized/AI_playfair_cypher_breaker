@@ -1,4 +1,4 @@
-package ie.gmi.sw.ai;
+package ie.gmit.sw.ai;
 
 public interface Parser {
 
