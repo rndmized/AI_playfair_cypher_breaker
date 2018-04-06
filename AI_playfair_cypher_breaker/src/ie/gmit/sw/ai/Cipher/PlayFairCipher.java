@@ -1,13 +1,21 @@
-package ie.gmit.sw.ai;
+package ie.gmit.sw.ai.Cipher;
 
+/***
+ * PlayFair Cipher Class to apply such cipher.
+ * 
+ * @author RnDMizeD
+ *
+ */
 public class PlayFairCipher implements Cipher {
 
 
-	public PlayFairCipher() {
-	}
-
-
-	
+	/***
+	 * Implementation of decryption by using playfair cipher.
+	 * 
+	 * @param encryptedText This is the text to be decrypted.
+	 * @param matrix This is the key to decript the text.
+	 * @return The decrypted text.
+	 */
 	private String playFairDecryption(String encryptedText, String matrix) {
 
 		StringBuilder ciphertex = new StringBuilder();
@@ -45,9 +53,7 @@ public class PlayFairCipher implements Cipher {
 	}
 
 
-	/***
-	 * 
-	 */
+
 	@Override
 	public String encrypt(String text, Key key) {
 		/*
@@ -58,7 +64,7 @@ public class PlayFairCipher implements Cipher {
 		return null;
 	}
 
-
+	
 	@Override
 	public String decrypt(String text, Key key) {
 		

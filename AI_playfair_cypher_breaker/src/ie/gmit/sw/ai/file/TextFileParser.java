@@ -1,4 +1,4 @@
-package ie.gmit.sw.ai;
+package ie.gmit.sw.ai.file;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,13 +7,28 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class PlayFairEncryptedTextFileParser implements Parser {
+/***
+ * Parser that reads a text file.
+ * 
+ * @author RnDMizeD
+ *
+ */
+public class TextFileParser implements Parser {
 	
 	private String text = "";
 	
-	public PlayFairEncryptedTextFileParser() {	}
+	/***
+	 * Constructor
+	 */
+	public TextFileParser() {	}
 	
-	public PlayFairEncryptedTextFileParser(String filepath) {
+	
+	/***
+	 * Parse the provided file.
+	 * 
+	 * @param filepath The file to parse along its path.
+	 */
+	public TextFileParser(String filepath) {
 		this.parse(filepath);
 	}
 
@@ -59,12 +74,20 @@ public class PlayFairEncryptedTextFileParser implements Parser {
 
 }
 
+	/***
+	 * Return the parsed text as string.
+	 * @return parsed text.
+	 */
 	public String getText() {
 		return text;
 	}
 	
 
-	
+	/***
+	 * Return sample of the parsed text.
+	 * 
+	 * @return sample of parsed text.
+	 */
 	public String getTextSample() {
 		return text.substring(0, 400);
 	}
