@@ -1,4 +1,4 @@
-# AI_playfair_cypher_breaker
+# AI Playfair Cypher Breaker
 
 Project for Artificial Intelligence Software Development Module (4th Year, Bsc (Hons) in Software Development)
 
@@ -86,3 +86,8 @@ This project is licensed under the MIT License - see the [LICENSE.md](https://gi
 
 
 ## Acknowledgments and References
+
+* References
+    * https://github.com/mckennapsean/code-examples/blob/master/Java/Playfair.java
+    * https://www.caveofprogramming.com/java/java-file-reading-and-writing-files-in-java.html
+    * https://www.mkyong.com/java/how-to-get-file-size-in-java/
